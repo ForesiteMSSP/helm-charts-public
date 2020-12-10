@@ -45,6 +45,8 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       serviceAccount: {{ include "jobmanager.serviceAccount" . }}
+      securityContext:
+        {{ toYaml .Values.securityContext | nindent 12 }}
       initContainers:
       {{- range $ct, $params := .Values.jobmanager.initContainers }}
         - name: {{ $ct }}
